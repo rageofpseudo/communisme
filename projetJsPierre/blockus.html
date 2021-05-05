@@ -1,0 +1,908 @@
+﻿<!doctype html>
+<html>
+    
+
+       <!--  ////////////// HEAD ///////////////////// -->
+    <head>
+           
+    <meta charset="UTF-8">
+    <title>Blockus </title>
+        
+        
+    <script>
+
+        ////////////////////// LES VAR /////////////////////////////
+        // la référence pour apprendre Javascript facilement :
+        //    http://www.w3schools.com/js/default.asp
+        // le code ci-dessous contient les références aux pages concernées de ce site
+
+        // 2D context : objet dans lequel on va réaliser les dessins (en 2D)
+        // --> voir http://www.w3schools.com/jsref/dom_obj_canvas.asp
+        //  pour connaître les fonctions offertes par cet objet
+
+        // --> voir http://www.html5canvastutorials.com
+        //  pour tout savoir de l'utilisation des canvas
+
+        // --> voir http://www.html5rocks.com/en/tutorials/canvas/performance/
+        //  pour tout savoir sur l'optimisation des performances dans les canvas
+        var context = null;
+
+        // rectangle dans le jeu :
+        // utilisation du format JSON pour définir la structure de cet objet
+        // --> voir http://www.w3schools.com/js/js_json.asp
+        // c'est un format clé: valeur, similaire aux types structurés vu au S2
+        // clic sur la zone de jeu (coordonnées relatives au canvas)
+        var clic = { x: 0, y: 0 };
+
+        //var faux = { hauteur: 32, largeur: 32, couleur: "" };
+
+        // var vrai = { hauteur: 32, largeur: 32, couleur: "RED" };
+        var couleur = "red";
+
+        var posCarreX = 10;
+        var posCarreY = 10;
+
+        var posCarreX = 5;
+        var posCarreY = 5;
+
+        var posX = posCarreX * 32;
+        var posY = posCarreY * 32;
+
+        var poser = true;
+        var nomPiece;
+
+
+        var joueurR;
+        var joueurV;
+        var joueurJ;
+        var joueurB;
+
+        var m = 100;
+        var h = 100;
+
+        var piece1 = {
+            x: 550 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece2 = {
+            x: 625 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece3 = {
+            x: 732 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece4 = {
+            x: 810 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+
+        var piece5 = {
+            x: 950 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece6 = {
+            x: 614 + m,
+            y: 75 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+
+        var piece7 = {
+            x: 725 + m,
+            y: 43 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, true, false, false],
+                [false, true, false, false, false],
+            ]
+
+        }
+
+        var piece8 = {
+            x: 885 + m,
+            y: 75 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+
+        var piece9 = {
+            x: 800 + m,
+            y: 80 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, true, false, false, false],
+                [false, true, true, false, false],
+            ]
+
+        }
+
+        var piece10 = {
+            x: 677 + m,
+            y: 150 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece11 = {
+            x: 950 + m,
+            y: 118 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+
+        var piece12 = {
+            x: 755 + m,
+            y: 160 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece13 = {
+            x: 615 + m,
+            y: 350 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+
+        var piece14 = {
+            x: 723 + m,
+            y: 237 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+
+        var piece15 = {
+            x: 896 + m,
+            y: 192 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+
+        var piece16 = {
+            x: 950 + m,
+            y: 200 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, true, false, false],
+            ]
+
+        }
+
+        var piece17 = {
+            x: 615 + m,
+            y: 192 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, true, false, false],
+            ]
+
+        }
+
+        var piece18 = {
+            x: 890 + m,
+            y: 207 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            id: "piece18",
+            lock: false,
+            tab: [
+                [true, true, false, false, false],
+                [false, true, true, false, false],
+                [false, false, true, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+            ]
+
+
+        }
+
+        var piece19 = {
+            x: 950 + m,
+            y: 315 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, true, false, false],
+                [false, false, true, false, false],
+            ]
+
+        }
+
+        var piece20 = {
+            x: 720 + m,
+            y: 315 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, true, false, false],
+                [false, true, false, false, false],
+            ]
+
+        }
+
+        var piece21 = {
+            x: 840 + m,
+            y: 315 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [true, true, true, false, false],
+                [false, true, false, false, false],
+            ]
+
+        }
+
+
+        var ttpieces = {
+            "piece1": piece1, "piece2": piece2, "piece3": piece3, "piece4": piece4, "piece5": piece5, "piece6": piece6, "piece7": piece7, "piece8": piece8, "piece9": piece9, "piece10": piece10,
+            "piece11": piece11, "piece12": piece12, "piece13": piece13, "piece14": piece14, "piece15": piece15, "piece16": piece16, "piece17": piece17, "piece18": piece18, "piece19": piece19, "piece20": piece20, "piece21": piece21
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //////////////////////FIN DES VAR //////////////////////////////////////
+
+        ////////////////////// LES FONCTIONS ///////////////////////////////////
+
+
+        /////////////LES FONCTIONS POUR FAIRE FONCTIONNER LE JEU ///////////////
+
+        // initialisation (appelée au chargement du corps du document <body onload="init">)
+        init = function () {
+            // instanciation de la variable globale contenant le contexte
+            context = document.getElementById("cvs").getContext("2d");
+            context.width = document.getElementById("cvs").width;
+            context.height = document.getElementById("cvs").height;
+
+            // on associe au document des écouteurs d'événements
+            // --> voir http://www.w3schools.com/js/js_events.asp
+
+            // 2 écouteurs pour le clavier (appui/relâchement d'une touche)
+            document.addEventListener("keydown", captureAppuiToucheClavier)
+            document.addEventListener("keyup", captureRelacheToucheClavier)
+            // on associe au document un écouteur d'événements souris
+            document.addEventListener("click", captureClicSouris)
+
+            // --> ces événements vont appeler les fonctions captureXYZ définies après.
+
+            // lancement de la boucle de jeu
+            boucleDeJeu();
+        }
+
+
+
+
+
+
+        boucleDeJeu = function () {
+            // mise à jour de l'état du jeu
+            update(Date.now());
+            // affichage de l'état du jeu
+            render();
+            // rappel de la boucle de jeu
+            // requestAnimationFrame est une fonction JS servant à pré-calculer le prochain affichage
+            //  http://www.html5canvastutorials.com/advanced/html5-canvas-animation-stage/
+            requestAnimationFrame(boucleDeJeu);
+        }
+
+
+
+
+
+
+        /**
+        *  Mise à jour de l'état du jeu
+        *  @param  d   date courante
+        */
+        var lastUpdate = Date.now();
+
+        update = function (d) {
+            //movePiece(event,piece18);
+
+
+
+            //dernière maj
+            lastUpdate = d;
+        }
+
+
+
+
+
+        /**
+         *  Fonction réalisant le rendu de l'état du jeu
+         */
+        render = function () {
+            // effacement de l'écran
+            context.clearRect(0, 0, context.width, context.height);
+            // affichage du quadrillage
+
+            for (i = 0; i < 672; i = i + 32) {
+                context.beginPath();
+                context.moveTo(i, 0);
+                context.lineTo(i, context.height);
+                context.strokeStyle = "black";
+                context.lineWidth = 1;
+                context.stroke();
+            }
+
+            for (j = 0; j - 1 < 640; j = j + 32) {
+                context.beginPath();
+                context.moveTo(0, j);
+                context.lineTo(640, j);
+                context.strokeStyle = "black";
+                context.lineWidth = 1;
+                context.stroke();
+            }
+
+            //affichage pièce 18
+            /*for (k=0; k<piece18.tab.length; k++) {
+                for (l=0; l<piece18.tab[0].length; l++){
+                    if  (piece18.tab[k][l] == true){
+                        context.fillStyle = piece18.couleur;
+                        context.fillRect(piece18.x + l * 32, piece18.y+k*32,piece18.largeur,piece18.hauteur);
+
+
+                    }
+                }
+            }*/
+            for (z = 1; z <= 21; z++) {
+                for (k = 0; k < ttpieces["piece" + z].tab.length; k++) {
+                    for (l = 0; l < ttpieces["piece" + z].tab[0].length; l++) {
+                        if (ttpieces["piece" + z].tab[k][l] == true) {
+                            context.fillStyle = ttpieces["piece" + z].couleur;
+                            context.fillRect(ttpieces["piece" + z].x + k * 32, ttpieces["piece" + z].y + l * 32, ttpieces["piece" + z].largeur, ttpieces["piece" + z].hauteur);
+
+                        }
+
+
+
+                    }
+                }
+            }
+
+        }
+
+        /////////////FIN DES FONCTIONS POUR FAIRE FONCTIONNER LE JEU ///////////////
+        ///////////////////// LES FONCTIONS HASARD //////////////////
+
+
+        harsardIntervalle = function (min, max) {
+            var tire;
+            tire = Math.round(min + (Math.random() * ((max - min) + 1)));
+            return tire;
+        }
+
+        //////////////////////// FIN FONCTON HASARD /////////////////////
+        //////////////////////// FONCTION CLAVIER ////////////////////////
+
+        /**
+         *  Fonction appelée lorsqu'une touche du clavier est appuyée
+         *  Associée à l'événement "keyDown"
+         */
+        captureAppuiToucheClavier = function (event) {
+            // pratique pour connaître les keyCode des touches du clavier :
+            //KeyCode: 39 -> right arrow
+            //KeyCode: 37  -> left arrow
+            //KeyCode : 38 -> up arrow
+            //KeyCode : 40 -> down arrow
+
+
+        }
+
+
+
+        /**
+       *  Fonction appelée lorsqu'une touche du clavier est relâchée
+       *  Associée à l'événement "keyUp"
+       */
+        //  --> http://www.cambiaresearch.com/articles/15/javascript-key-codes
+        captureRelacheToucheClavier = function (event) {
+
+
+        }
+
+
+
+        ////////////////////////FIN FONCTION CLAVIER ////////////////////
+        ////////////////////// FONCTION SOURIS /////////////////////////
+        /**
+        *  Fonction appelée lorsqu'une touche du clavier est relâchée
+        *  Associée à l'événement "click"
+        */
+        captureClicSouris = function (event) {
+            if (event.target.id == "cvs") {
+                clic.x = event.pageX - event.target.offsetLeft;
+                clic.y = event.pageY - event.target.offsetTop;
+
+            }
+
+            selectionnerPiece();
+
+            if (poser) {
+                poser = false;
+            }      
+        }
+
+
+
+
+
+
+
+        movePiece = function (e, piece) {
+            if (poser == false && !piece.lock) {
+                if (event.target.id == "cvs") {
+                    piece.x = e.pageX - e.target.offsetLeft;
+                    piece.y = e.pageY - e.target.offsetTop;
+                }
+            }
+        }
+     
+            
+               
+          
+       
+       
+
+       
+     
+        
+>
+      
+
+
+        //////////////////////FIN FONCTION SOURIS //////////////////////
+
+        function doubleClick() {
+            var piece = selectionnerPiece();
+               poser = true;
+               piece.lock = true;
+        }
+
+
+
+     
+     
+
+      
+
+       
+       /////////////////////// FONCTION PIECE /////////////////////////
+        
+        // fonction pour verifier si on clique sur une piece
+        // Si oui, on peut bouger la piece
+          selectionnerPiece = function () {
+             var i = 1;
+             var trouver = false;
+              
+             while (!trouver && i <=21  ) {
+                 if (trouverPiece(i) == true){
+
+                     trouver = true;
+
+
+                 }
+                 else {
+                     
+                     i++;
+                 }
+             
+             
+             
+            
+             }
+              
+             switch(i){
+                 case 1:
+                  return "piece1"
+                 break;
+                 case 2:
+                  return "piece2"        
+                 break;
+                 case 3:
+                  return "piece3"        
+                 break;
+                 case 4:
+                  return "piece4"               
+                 break;
+                 case 5:
+                  return "piece5"        
+                 break;
+                 case 6:
+                  return "piece6"        
+                 break;
+                 case 7:
+                  return "piece7"  
+                 break;
+                 case 8:
+                  return "piece8"           
+                 break;
+                 case 9:
+                    return "piece9"          
+                 break;
+                 case 10:
+                   return "piece10"        
+                 break;
+                 case 11:
+                  return "piece11"        
+                 break;
+                 case 12:
+                     return "piece12"        
+                 break;
+                 case 13:
+                      return "piece13"        
+                 break;
+                 case 14:
+                    return "piece14"        
+                 break;
+                 case 15:
+                     return "piece15"        
+                 break;
+                 case 16:
+                     return "piece16"        
+                 break;
+                 case 17:
+                     return "piece17"        
+                 break;
+                 case 18:
+                       return "piece18"        
+                 break;
+                 case 19:
+                      return "piece19"        
+                 break;
+                 case 20:
+                       return "piece20"        
+                 break;
+                 case 21:
+                       return "piece21"        
+                 break;
+
+              }
+
+
+
+        }
+         
+
+
+        
+     
+
+                    
+        // Fonction pour bouger les pieces
+        // On verifie que poser est faux et que la piece n est pas lock
+        movePiece = function(e){
+            var piece = selectionnerPiece();
+            if (poser == false && !piece.lock){
+                if (event.target.id == "cvs") {
+                    piece.x = e.pageX - e.target.offsetLeft;
+                    piece.y = e.pageY - e.target.offsetTop;
+                }
+            }            
+        }
+        
+        // Affichage des pieces        
+        // On verifie si la piece est lock ou pas
+        // Si lock est vrai alors la piece ne s'affiche pas a droite de la grille
+        affichagePieceD = function () {
+               
+                if (piece1.lock || piece2.lock || piece3.lock || piece4.lock || piece5.lock || piece6.lock || piece7.lock || piece8.lock || piece9.lock || piece10.lock || piece10.lock || piece11.lock || piece12.lock || piece13.lock || piece14.lock || piece15.lock ||piece16.lock ||piece17.lock || piece18.lock || piece19.lock || piece20.lock ||piece21.lock){
+                    
+                    
+               
+                    
+                }
+                
+                
+                
+        }
+        
+        
+        // Trouver piece
+        // Utilisation de clic.x et clic.y
+        trouverPiece = function (i){
+                var ttt = false;
+                switch (i){
+                case 1:
+                 
+                 break;
+                 case 2:
+                 
+                 break;
+                 case 3:
+                      
+                 break;
+                 case 4:
+                              
+                 break;
+                 case 5:
+                   
+                 break;
+                 case 6:
+                 
+                 break;
+                 case 7:
+                
+                 break;
+                 case 8:
+                 
+                 break;
+                 case 9:
+                   
+                 break;
+                 case 10:
+                     
+                 break;
+                 case 11:
+                    
+                 break;
+                 case 12:
+                          
+                 break;
+                 case 13:
+                       
+                 break;
+                 case 14:
+                    
+                 break;
+                 case 15:
+                    
+                 break;
+                 case 16:
+                    
+                 break;
+                 case 17:
+                           
+                 break;
+                 case 18:
+                       if   ( ((clic.x > piece18.x && clic.x < piece18.x + piece18.largeur*2)  && (clic.y > piece18.y && clic.y < piece18.y+piece18.hauteur)) || 
+                            ( (clic.x > piece18.x+piece18.largeur && clic.x < piece18.x+piece18.largeur*3)&& (clic.y > piece18.y+piece18.hauteur && clic.y < piece18.y + piece18.hauteur*2))       ||
+                            ( (clic.x > piece18.x+piece18.largeur*2 && clic.x < piece18.x+piece18.largeur*3) && (clic.y > piece18.y+ piece18.hauteur*2 && clic.y < piece18.y+ piece18.hauteur*3) ) )  {
+                           
+                           
+                            return ttt = true;    
+                       }
+                 break;
+                 case 19:
+                      
+                 break;
+                 case 20:
+                     
+                 break;
+                 case 21:
+                             
+                 break;
+
+            
+            
+                }
+            
+        }
+        
+         /////////////////////// FONCTION PIECE /////////////////////////
+    
+        ////////////////////// FIN DES FONCTION /////////////////////// 
+
+    </script>
+        
+        
+    </head>
+   <!-- /////////////// FIN HEAD ///////////////////// -->
+    
+   <!-- /////////////// BODY //////////////////// -->
+<body onload="init()">
+
+<canvas id="cvs" width="1400" height="640" style="margin: 10px auto; border: solid 1px #000000;" onmousemove="movePiece(event)"
+        ondblclick="doubleClick()" >
+        <!-- un petit carre fait 32 par 32-->
+    
+</canvas>
+
+    
+
+</body>
+    <!-- ///////////////FIN BODY //////////////////// -->
+</html>
