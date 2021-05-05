@@ -4,3 +4,5 @@ Erwan est le best et Pierre est le pire en plus on as zéro motiv pour bosser et
 Trying things with my big bone
 
 Pierre bosse un peu et viens me voir #communisme
+
+jarrive mec
