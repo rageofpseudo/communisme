@@ -1,433 +1,1038 @@
 ﻿<!doctype html>
 <html>
-    
-
        <!--  ////////////// HEAD ///////////////////// -->
     <head>
            
     <meta charset="UTF-8">
     <title>Blockus </title>
-        
-        
+    <link href="custom.css">
     <script>
-
-        ////////////////////// LES VAR /////////////////////////////
-        // la référence pour apprendre Javascript facilement :
-        //    http://www.w3schools.com/js/default.asp
-        // le code ci-dessous contient les références aux pages concernées de ce site
-
-        // 2D context : objet dans lequel on va réaliser les dessins (en 2D)
-        // --> voir http://www.w3schools.com/jsref/dom_obj_canvas.asp
-        //  pour connaître les fonctions offertes par cet objet
-
-        // --> voir http://www.html5canvastutorials.com
-        //  pour tout savoir de l'utilisation des canvas
-
-        // --> voir http://www.html5rocks.com/en/tutorials/canvas/performance/
-        //  pour tout savoir sur l'optimisation des performances dans les canvas
+        ////////////////////////////////////// DEBUT DES VAR //////////////////////////////////////////////
+       /////////////////////////////////////// LES VAR GLOBALES ///////////////////////////////////////////
+        ///////////////LES VAR TEST/////
+        var  testB = 0;
+        ////////////////////////////////
         var context = null;
-
-        // rectangle dans le jeu :
-        // utilisation du format JSON pour définir la structure de cet objet
-        // --> voir http://www.w3schools.com/js/js_json.asp
-        // c'est un format clé: valeur, similaire aux types structurés vu au S2
         // clic sur la zone de jeu (coordonnées relatives au canvas)
         var clic = { x: 0, y: 0 };
-
         //var faux = { hauteur: 32, largeur: 32, couleur: "" };
-
         // var vrai = { hauteur: 32, largeur: 32, couleur: "RED" };
-        var couleur = "red";
-
+        var couleurB = "blue";
+        var couleurR = "red";
+        var couleurJ = "yellow";
+        var couleurV = "green";
         var posCarreX = 10;
         var posCarreY = 10;
-
         var posCarreX = 5;
         var posCarreY = 5;
-
         var posX = posCarreX * 32;
         var posY = posCarreY * 32;
-
         var poser = true;
         var nomPiece;
-
-
-        var joueurR;
-        var joueurV;
-        var joueurJ;
-        var joueurB;
-
-        var m = 100;
-        var h = 100;
-
-        var piece1 = {
-            x: 550 + m,
-            y: 32 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-            ]
-
+        var carac;
+        /////////////////////////////////////// LES VAR GLOBALES ///////////////////////////////////////////
+        //////////////////////////////////////////LES CLASSES//////////////////////////////////////////////
+        class Joueur{
+            piece1;
+            piece2;
+            piece3;
+            piece4;
+            piece5;
+            piece6;
+            piece7;
+            piece8;
+            piece9;
+            piece10;
+            piece11;
+            piece12;
+            piece13;
+            piece14;
+            piece15;
+            piece16;
+            piece17;
+            piece18;
+            piece19;
+            piece20;
+            piece21;
+            constructor(couleur){
+                this.piece1 = new Piece1(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece2 = new Piece2(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece3 = new Piece3(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece4 = new Piece4(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece5 = new Piece5(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece6 = new Piece6(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece7 = new Piece7(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece8 = new Piece8(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece9 = new Piece9(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece10 = new Piece10(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece11 = new Piece11(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece12 = new Piece12(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece13 = new Piece13(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece14 = new Piece14(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece15 = new Piece15(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece16 = new Piece16(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece17 = new Piece17(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece18 = new Piece18(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece19 = new Piece19(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece20 = new Piece20(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+                this.piece21 = new Piece21(couleur, coordX, coordY, tab, lock, hauteur, largeur);
+            }
         }
-
-        var piece2 = {
-            x: 625 + m,
-            y: 32 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
+        class Piece1{
+            couleur;
+            x;
+            tab;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur, coordX, coordY, tab, lock, hauteur, largeur){
+                this.couleur = couleur;
+                this.x = coordX;
+                this.y= coordY;
+                this.tab = tab;
+                this.lock = lock;
+                this.hauteur = hauteur;
+                this.largeur = largeur;
+                this.etat = 0;
+            }
+            tab(){
+               this.tab =
                 [false, false, false, false, false],
                 [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-            ]
-
-        }
-
-        var piece3 = {
-            x: 732 + m,
-            y: 32 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-            ]
-
-        }
-
-        var piece4 = {
-            x: 810 + m,
-            y: 32 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, true, false, false, false],
-            ]
-
-        }
-
-        var piece5 = {
-            x: 950 + m,
-            y: 32 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-            ]
-
-        }
-
-        var piece6 = {
-            x: 614 + m,
-            y: 75 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, true, false, false, false],
-                [false, true, false, false, false],
-                [true, true, false, false, false],
-            ]
-
-        }
-
-        var piece7 = {
-            x: 725 + m,
-            y: 43 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, true, false, false, false],
-                [false, true, true, false, false],
-                [false, true, false, false, false],
-            ]
-
-        }
-
-        var piece8 = {
-            x: 885 + m,
-            y: 75 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, true, false, false, false],
-                [true, true, false, false, false],
-            ]
-
-        }
-
-        var piece9 = {
-            x: 800 + m,
-            y: 80 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, true, false, false, false],
-                [false, true, true, false, false],
-            ]
-
-        }
-
-        var piece10 = {
-            x: 677 + m,
-            y: 150 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-            ]
-
-        }
-
-        var piece11 = {
-            x: 950 + m,
-            y: 118 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, true, false, false, false],
-                [false, true, false, false, false],
-                [false, true, false, false, false],
-                [true, true, false, false, false],
-            ]
-
-        }
-
-        var piece12 = {
-            x: 755 + m,
-            y: 160 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, true, false, false, false],
-                [false, true, false, false, false],
-                [true, true, false, false, false],
-                [true, false, false, false, false],
-            ]
-
-        }
-
-        var piece13 = {
-            x: 615 + m,
-            y: 350 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, true, false, false, false],
-                [true, true, false, false, false],
-                [true, true, false, false, false],
-            ]
-
-        }
-
-        var piece14 = {
-            x: 723 + m,
-            y: 237 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, true, false, false, false],
-                [false, true, false, false, false],
-                [true, true, false, false, false],
-            ]
-
-        }
-
-        var piece15 = {
-            x: 896 + m,
-            y: 192 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, true, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-            ]
-
-        }
-
-        var piece16 = {
-            x: 950 + m,
-            y: 200 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, true, false, false, false],
-                [false, true, false, false, false],
-                [true, true, true, false, false],
-            ]
-
-        }
-
-        var piece17 = {
-            x: 615 + m,
-            y: 192 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, false, false, false, false],
-                [true, true, true, false, false],
-            ]
-
-        }
-
-        var piece18 = {
-            x: 890 + m,
-            y: 207 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            id: "piece18",
-            lock: false,
-            tab: [
-                [true, true, false, false, false],
-                [false, true, true, false, false],
                 [false, false, true, false, false],
                 [false, false, false, false, false],
-                [false, false, false, false, false],
-            ]
-
-
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 650;
+                this.y = 132;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            locked(){
+                this.lock = true;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
         }
-
-        var piece19 = {
-            x: 950 + m,
-            y: 315 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
+        class Piece2{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab1(){
+               this.tab =
                 [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, true, true, false, false],
                 [false, false, true, false, false],
-            ]
-
+                [false, false, true, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false];
+            }
+            tab2(){
+                this.tab =
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, true, true, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 725;
+                this.y = 132;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat == 1){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
         }
-
-        var piece20 = {
-            x: 720 + m,
-            y: 315 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
+        class Piece3{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab1(){
+               this.tab =
                 [false, false, false, false, false],
-                [false, false, false, false, false],
-                [true, false, false, false, false],
-                [true, true, true, false, false],
-                [false, true, false, false, false],
-            ]
-
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, false, false, false];
+            }
+            tab2(){
+                this.tab =
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, true, true, true, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 832;
+                this.y = 132;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat == 1){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
         }
-
-        var piece21 = {
-            x: 840 + m,
-            y: 315 + h,
-            couleur: couleur,
-            hauteur: 32,
-            largeur: 32,
-            lock: false,
-            tab: [
+        class Piece4{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab1(){
+               this.tab =
                 [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, true, false],
                 [false, false, false, false, false],
-                [false, true, false, false, false],
-                [true, true, true, false, false],
-                [false, true, false, false, false],
-            ]
-
+                [false, false, false, false, false];
+            }
+            tab2(){
+                this.tab =
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, true, true, false],
+                    [false, false, true, false, false],
+                    [false, false, false, false, false];
+            }
+            tab3(){
+                this.tab =
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, true, true, false, false],
+                    [false, false, true, false, false],
+                    [false, false, false, false, false];
+            }
+            tab4(){
+                this.tab =
+                    [false, false, false, false, false],
+                    [false, false, true, false, false],
+                    [false, true, true, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 910;
+                this.y = 132;
+            
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
         }
-
-
-        var ttpieces = {
-            "piece1": piece1, "piece2": piece2, "piece3": piece3, "piece4": piece4, "piece5": piece5, "piece6": piece6, "piece7": piece7, "piece8": piece8, "piece9": piece9, "piece10": piece10,
-            "piece11": piece11, "piece12": piece12, "piece13": piece13, "piece14": piece14, "piece15": piece15, "piece16": piece16, "piece17": piece17, "piece18": piece18, "piece19": piece19, "piece20": piece20, "piece21": piece21
+        class Piece5{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false];
+            }
+            coordInitial(){
+                this.x = 1050;
+                this.y = 132;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece6{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, true, true, false, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 714;
+                this.y = 175;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece7{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, true, false],
+                [false, false, true, false, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 825;
+                this.y = 143;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece8{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, true, false],
+                [false, false, true, true, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 985;
+                this.y = 175;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece9{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, true, true, false, false],
+                [false, false, true, true, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 900;
+                this.y = 180;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece10{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false];
+            }
+            coordInitial(){
+                this.x = 777;
+                this.y = 250;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece11{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, true, true, false, false];
+            }
+            coordInitial(){
+                this.x = 1050;
+                this.y = 218;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece12{
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, true, true, false, false],
+                [false, true, false, false, false];
+            }
+            coordInitial(){
+                this.x = 855;
+                this.y = 260;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece13{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, true, true, false, false],
+                [false, true, true, false, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 715;
+                this.y = 450;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece14{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, true, false],
+                [false, false, false, true, false],
+                [false, false, true, true, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 823;
+                this.y = 337;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece15{     
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, true, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false];
+            }
+            coordInitial(){
+                this.x = 996;
+                this.y = 292;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece16{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, false, true, false, false],
+                [false, false, true, false, false],
+                [false, true, true, true, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 1050;
+                this.y = 300;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece17{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [false, true, true, true, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 715;
+                this.y = 292;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece18{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, true, true, false, false],
+                [false, false, true, true, false],
+                [false, false, false, true, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 990;
+                this.y = 307;
+                
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece19{      
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, true, true, false],
+                [false, false, false, true, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 1050;
+                this.y = 415;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece20{     
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur){
+                this.couleur = couleur;
+            }
+            tab(){
+               this.tab =
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, true, true, false],
+                [false, false, true, false, false],
+                [false, false, false, false, false];
+            }
+            coordInitial(){
+                this.x = 820;
+                this.y = 415;
+            }
+            unlocked(){
+                this.lock = false;
+            }
+            dim(){
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        class Piece21 {
+            couleur;
+            tab;
+            x;
+            y;
+            hauteur;
+            largeur;
+            lock;
+            etat;
+            constructor(couleur) {
+                this.couleur = couleur;
+            }
+            tab() {
+                this.tab =
+                    [false, false, false, false, false],
+                    [false, false, true, false, false],
+                    [false, true, true, true, false],
+                    [false, false, true, false, false],
+                    [false, false, false, false, false];
+            }
+            coordInitial() {
+                this.x = 940;
+                this.y = 415;
+            }
+            unlocked() {
+                this.lock = false;
+            }
+            dim() {
+                this.hauteur = 32;
+                this.largeur = 32;
+            }
+            rotate(){
+                if (this.etat != 0){
+                    if (this.etat <= 3){
+                        this.etat++;
+                    }else{
+                        this.etat = 1;
+                    }
+                }
+            }
+        }
+        //////////////////////////////////////////LES CLASSES/////////////////////////////////////////////
+        /////////////////////////////////////////LES INSTANCIATIONS//////////////////////////////////////
+         //creation des pieces des 4 joueurs
+        var JoueurRouge = new Joueur(couleurR);
+        var JoueurVert = new Joueur(couleurV);
+        var JoueurBleu = new Joueur(couleurB);
+        var JoueurJaune = new Joueur(couleurJ);
+         /////////////////////////////////////////LES INSTANCIATIONS//////////////////////////////////////
+        // le tour de chaque joueur, initialisé à faux (à pars bleu) pour chaque joueur au debut du jeu
+        var turn = {
+            turnBleu: true,
+            turnRed: false,
+            turnGreen: false,
+            turnYellow: false,
+            
         };
-
-
-
-
+        var ttpiecesR = {
+            "piece1": JoueurRouge.piece1, "piece2": JoueurRouge.piece2, "piece3": JoueurRouge.piece3, "piece4": JoueurRouge.piece4, "piece5": JoueurRouge.piece5, "piece6": JoueurRouge.piece6, "piece7": JoueurRouge.piece7, "piece8": JoueurRouge.piece8, "piece9": JoueurRouge.piece9, "piece10": JoueurRouge.piece10,
+            "piece11": JoueurRouge.piece11, "piece12": JoueurRouge.piece12, "piece13": JoueurRouge.piece13, "piece14": JoueurRouge.piece14, "piece15": JoueurRouge.piece15, "piece16": JoueurRouge.piece16, "piece17": JoueurRouge.piece17, "piece18": JoueurRouge.piece18, "piece19": JoueurRouge.piece19, "piece20": JoueurRouge.piece20, "piece21": JoueurRouge.piece21
+        };
+        
+        var ttpiecesV = {
+            
+            
+        }
+        var ttpiecesB = {
+            
+            
+        }
+        var ttpiecesJ = {
+            
+            
+        }
+        var ttjoueur = {
+             "joueurR": JoueurRouge, 
+             "joueurV": JoueurVert,
+             "joueurB": JoueurBleu,
+             "joueurJ": JoueurJaune
+        }
+        
+        
+        
 
 
 
@@ -470,12 +1075,6 @@
             // lancement de la boucle de jeu
             boucleDeJeu();
         }
-
-
-
-
-
-
         boucleDeJeu = function () {
             // mise à jour de l'état du jeu
             update(Date.now());
@@ -486,39 +1085,28 @@
             //  http://www.html5canvastutorials.com/advanced/html5-canvas-animation-stage/
             requestAnimationFrame(boucleDeJeu);
         }
-
-
-
-
-
-
         /**
         *  Mise à jour de l'état du jeu
         *  @param  d   date courante
         */
         var lastUpdate = Date.now();
-
         update = function (d) {
             //movePiece(event,piece18);
 
 
-
+                
             //dernière maj
             lastUpdate = d;
         }
-
-
-
-
-
         /**
          *  Fonction réalisant le rendu de l'état du jeu
          */
         render = function () {
             // effacement de l'écran
             context.clearRect(0, 0, context.width, context.height);
-            // affichage du quadrillage
-
+            // affichage du titre
+            displayTitleGame();
+            // Affichage du quadrillage
             for (i = 0; i < 672; i = i + 32) {
                 context.beginPath();
                 context.moveTo(i, 0);
@@ -527,7 +1115,6 @@
                 context.lineWidth = 1;
                 context.stroke();
             }
-
             for (j = 0; j - 1 < 640; j = j + 32) {
                 context.beginPath();
                 context.moveTo(0, j);
@@ -548,7 +1135,8 @@
                     }
                 }
             }*/
-            for (z = 1; z <= 21; z++) {
+            //affichage de toutes les pieces
+           /* for (z = 1; z <= 21; z++) {
                 for (k = 0; k < ttpieces["piece" + z].tab.length; k++) {
                     for (l = 0; l < ttpieces["piece" + z].tab[0].length; l++) {
                         if (ttpieces["piece" + z].tab[k][l] == true) {
@@ -561,8 +1149,14 @@
 
                     }
                 }
-            }
-
+            }*/
+          
+           
+            
+            displayWhichPlayer(); // peut être dans l'update ?
+            
+            affichageP('R');
+          
         }
 
         /////////////FIN DES FONCTIONS POUR FAIRE FONCTIONNER LE JEU ///////////////
@@ -591,13 +1185,10 @@
 
 
         }
-
-
-
         /**
-       *  Fonction appelée lorsqu'une touche du clavier est relâchée
-       *  Associée à l'événement "keyUp"
-       */
+         *  Fonction appelée lorsqu'une touche du clavier est relâchée
+         *  Associée à l'événement "keyUp"
+         */
         //  --> http://www.cambiaresearch.com/articles/15/javascript-key-codes
         captureRelacheToucheClavier = function (event) {
 
@@ -619,62 +1210,1368 @@
 
             }
 
-            selectionnerPiece();
+            //selectionnerPiece();
 
             if (poser) {
                 poser = false;
             }      
         }
-
-
-
-
-
-
-
-        movePiece = function (e, piece) {
+        movePiece = function (e) {
+            var piece = selectionnerPiece();
             if (poser == false && !piece.lock) {
                 if (event.target.id == "cvs") {
                     piece.x = e.pageX - e.target.offsetLeft;
                     piece.y = e.pageY - e.target.offsetTop;
                 }
             }
-        }
-     
             
-               
-          
-       
-       
-
-       
-     
-        
->
-      
-
-
-        //////////////////////FIN FONCTION SOURIS //////////////////////
-
+        }
         function doubleClick() {
             var piece = selectionnerPiece();
                poser = true;
                piece.lock = true;
         }
+        
+        //////////////////////FIN FONCTION SOURIS //////////////////////
+        //////////////////////FCT AFFICHAGE ///////////////////////////
+        displayWhichPlayer = function(){
+            if (turn.turnBleu) {
+                turn.turnRed, turn.turnYellow, turn.turnGreen = false;
+                couleur = "blue";
+              for (i = 1; i < 32; i = i + 1) {
+                    context.beginPath();
+                    context.moveTo(640, i);
+                    context.lineTo(context.width, i);
+                    context.strokeStyle = "blue";
+                    context.lineWidth = 1;
+                    context.stroke();
+                }
+            } else if (turn.turnRed) {
+                turn.turnBleu, turn.turnYellow, turn.turnGreen = false;
+                couleur = "red";
+                 for (i = 1; i < 32; i = i + 1) {
+                    context.beginPath();
+                    context.moveTo(640, i);
+                    context.lineTo(context.width, i);
+                    context.strokeStyle = "red";
+                    context.lineWidth = 1;
+                    context.stroke();
+                }
 
 
+            } else if (turn.turnGreen) {
+                turn.turnBleu, turn.turnYellow, turn.turnRed = false;
+                couleur = "green";
+                 for (i = 1; i < 32; i = i + 1) {
+                    context.beginPath();
+                    context.moveTo(640, i);
+                    context.lineTo(context.width, i);
+                    context.strokeStyle = "green";
+                    context.lineWidth = 1;
+                    context.stroke();
+                }
+            } else {
+                turn.turnBleu, turn.turnGreen, turn.turnRed = false;
+                couleur = "yellow";
+                 for (i = 1; i < 32; i = i + 1) {
+                    context.beginPath();
+                    context.moveTo(640, i);
+                    context.lineTo(context.width, i);
+                    context.strokeStyle = "yellow";
+                    context.lineWidth = 1;
+                    context.stroke();
+                }    
+            }
+        
+        }
+        displayTitleGame = function(){
+             if (testB==0){
+            testB++;
+            var img = document.createElement("img");
+            img.src = 'blokus2.jpg';
+            img.setAttribute("height", "75");
+            img.setAttribute("width", "100");
+            img.setAttribute("alt", "Blokus");
+            
+            var d = document.getElementById("imageBlokus");
+            d.append(img);
+            d.setAttribute("style", "text-align:center");
+            }  
+            
+            
+        
+        }
+        affichageP = function (carac){
+            switch (carac) {
+                case 'R':
+                    affichagePieceRouge();
+                break;
+                case 'V':
+                     affichagePieceVerte();   
+                break;
+                case 'J':
+                      affichagePieceJaune(); 
+                break;
+                case 'B':
+                     affichagePieceBleue(); 
+                break;
 
-     
-     
 
-      
+            } 
+        }
+        // Affichage des pieces        
+        // On verifie si la piece est lock ou pas
+        // Si lock est vrai alors la piece ne s'affiche pas a droite de la grille
+        affichagePieceD = function (carac) {
+          for (z = 1; z <= 21; z++) {
+            for (k = 0; k < ttjoueur["joueur" + carac].ttpieces["piece" + z].tab.length; k++) {
+              for (l = 0; l < ttjoueur["joueur" + carac].ttpieces["piece" + z].tab[0].length; l++) {
+                 if (ttjoueur["joueur" + carac].ttpieces["piece" + z].tab[k][l] == true && ttjoueur["joueur" + carac].ttpieces["piece" + z].lock == false) {
+                     
+                     
+                     context.fillStyle = ttjoueur["joueur" + carac].ttpieces["piece" + z].couleur;
+                     context.fillRect(ttjoueur["joueur" + carac].ttpieces["piece" + z].x + k * 32, ttjoueur["joueur" + carac].ttpieces["piece" + z].y + l * 32, ttjoueur["joueur" + carac].ttpieces["piece" + z].largeur, ttjoueur["joueur" + carac].ttpieces["piece" + z].hauteur);
+                 }
+               }
+             }
+            }
+          }
+        affichagePieceRouge = function(){
+           for (i=1; i<=21; i++){
+                creePieceR(i);
+                
+            }
+         }   
+        affichagePieceVerte = function() {
+            for (i=1; i<=21; i++){
+                creePieceV(i);   
+            }
+        }
+        affichagePieceJaune = function(){
+            for (i=1; i<=21; i++){
+                creePieceJ(i);   
+            }
+        }
+        affichagePieceBleu = function() {
+            for (i=1; i<=21; i++){
+                creePieceB(i);   
+            }
+        }
+        
+        creePieceR = function(n){
+            switch(n){
+                case 1:
+                   
+                 for (k=0; k<=JoueurRouge.piece1.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece1.tab[0].length-1; l++){
 
-       
+                           if (JoueurRouge.piece1.tab[k][l] == true && JoueurRouge.piece1.lock == false){
+                             context.fillStyle = JoueurRouge.piece1.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece1.largeur,JoueurRouge.piece1.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 2:
+                   
+                 for (k=0; k<=JoueurRouge.piece2.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece2.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece2.tab[k][l] == true && JoueurRouge.piece2.lock == false){
+                             context.fillStyle = JoueurRouge.piece2.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece2.largeur,JoueurRouge.piece2.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 3:
+                   
+                 for (k=0; k<=JoueurRouge.piece3.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece3.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece3.tab[k][l] == true && JoueurRouge.piece3.lock == false){
+                             context.fillStyle = JoueurRouge.piece3.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece3.largeur,JoueurRouge.piece3.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 4:
+                   
+                for (k=0; k<=JoueurRouge.piece4.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece4.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece4.tab[k][l] == true && JoueurRouge.piece4.lock == false){
+                             context.fillStyle = JoueurRouge.piece4.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece4.largeur,JoueurRouge.piece4.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 5:
+                   
+                for (k=0; k<=JoueurRouge.piece5.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece5.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece5.tab[k][l] == true && JoueurRouge.piece5.lock == false){
+                             context.fillStyle = JoueurRouge.piece5.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece5.largeur,JoueurRouge.piece5.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 6:
+                   
+                for (k=0; k<=JoueurRouge.piece6.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece6.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece6.tab[k][l] == true && JoueurRouge.piece6.lock == false){
+                             context.fillStyle = JoueurRouge.piece6.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece6.largeur,JoueurRouge.piece6.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 7:
+                   
+                for (k=0; k<=JoueurRouge.piece7.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece7.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece7.tab[k][l] == true && JoueurRouge.piece7.lock == false){
+                             context.fillStyle = JoueurRouge.piece7.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece7.largeur,JoueurRouge.piece7.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 8:
+                   
+                for (k=0; k<=JoueurRouge.piece8.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece8.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece8.tab[k][l] == true && JoueurRouge.piece8.lock == false){
+                             context.fillStyle = JoueurRouge.piece8.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece8.largeur,JoueurRouge.piece8.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 9:
+                   
+                for (k=0; k<=JoueurRouge.piece9.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece9.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece9.tab[k][l] == true && JoueurRouge.piece9.lock == false){
+                             context.fillStyle = JoueurRouge.piece9.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece9.largeur,JoueurRouge.piece9.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 10:
+                   
+                 for (k=0; k<=JoueurRouge.piece10.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece10.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece10.tab[k][l] == true && JoueurRouge.piece10.lock == false){
+                             context.fillStyle = JoueurRouge.piece10.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece10.largeur,JoueurRouge.piece10.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 11:
+                   
+                for (k=0; k<=JoueurRouge.piece11.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece11.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece11.tab[k][l] == true && JoueurRouge.piece11.lock == false){
+                             context.fillStyle = JoueurRouge.piece11.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece11.largeur,JoueurRouge.piece11.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 12:
+                   
+                 for (k=0; k<=JoueurRouge.piece12.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece12.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece12.tab[k][l] == true && JoueurRouge.piece12.lock == false){
+                             context.fillStyle = JoueurRouge.piece12.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece12.largeur,JoueurRouge.piece12.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 13:
+                   
+                for (k=0; k<=JoueurRouge.piece13.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece13.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece13.tab[k][l] == true && JoueurRouge.piece13.lock == false){
+                             context.fillStyle = JoueurRouge.piece13.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece13.largeur,JoueurRouge.piece13.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 14:
+                   
+                 for (k=0; k<=JoueurRouge.piece14.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece14.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece14.tab[k][l] == true && JoueurRouge.piece14.lock == false){
+                             context.fillStyle = JoueurRouge.piece14.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece14.largeur,JoueurRouge.piece14.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 15:
+                   
+                 for (k=0; k<=JoueurRouge.piece15.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece15.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece15.tab[k][l] == true && JoueurRouge.piece15.lock == false){
+                             context.fillStyle = JoueurRouge.piece15.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece15.largeur,JoueurRouge.piece15.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 16:
+                   
+                 for (k=0; k<=JoueurRouge.piece16.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece16.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece16.tab[k][l] == true && JoueurRouge.piece16.lock == false){
+                             context.fillStyle = JoueurRouge.piece16.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece16.largeur,JoueurRouge.piece16.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 17:
+                   
+                 for (k=0; k<=JoueurRouge.piece17.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece17.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece17.tab[k][l] == true && JoueurRouge.piece17.lock == false){
+                             context.fillStyle = JoueurRouge.piece17.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece17.largeur,JoueurRouge.piece17.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 18:
+                   
+                 for (k=0; k<=JoueurRouge.piece18.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece18.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece18.tab[k][l] == true && JoueurRouge.piece18.lock == false){
+                             context.fillStyle = JoueurRouge.piece18.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece18.largeur,JoueurRouge.piece18.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 19:
+                   
+                 for (k=0; k<=JoueurRouge.piece19.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece19.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece19.tab[k][l] == true && JoueurRouge.piece19.lock == false){
+                             context.fillStyle = JoueurRouge.piece19.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece19.largeur,JoueurRouge.piece19.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 20:
+                   
+                 for (k=0; k<=JoueurRouge.piece20.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece20.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece20.tab[k][l] == true && JoueurRouge.piece20.lock == false){
+                             context.fillStyle = JoueurRouge.piece20.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece20.largeur,JoueurRouge.piece20.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 21:
+                   
+                for (k=0; k<=JoueurRouge.piece21.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurRouge.piece21.tab[0].length-1; l++){
+
+                           if (JoueurRouge.piece21.tab[k][l] == true && JoueurRouge.piece21.lock == false){
+                             context.fillStyle = JoueurRouge.piece21.couleur; 
+                             context.fillRect(l*32,k*32,JoueurRouge.piece21.largeur,JoueurRouge.piece21.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                    
+            }
+            
+            
+            
+        }
+        creePieceB = function(n){
+            switch(n){
+                case 1:
+                   
+                 for (k=0; k<=JoueurBleu.piece1.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece1.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece1.tab[k][l] == true && JoueurBleu.piece1.lock == false){
+                             context.fillStyle = JoueurBleu.piece1.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece1.largeur,JoueurBleu.piece1.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 2:
+                   
+                 for (k=0; k<=JoueurBleu.piece2.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece2.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece2.tab[k][l] == true && JoueurBleu.piece2.lock == false){
+                             context.fillStyle = JoueurBleu.piece2.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece2.largeur,JoueurBleu.piece2.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 3:
+                   
+                 for (k=0; k<=JoueurBleu.piece3.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece3.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece3.tab[k][l] == true && JoueurBleu.piece3.lock == false){
+                             context.fillStyle = JoueurBleu.piece3.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece3.largeur,JoueurBleu.piece3.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 4:
+                   
+                for (k=0; k<=JoueurBleu.piece4.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece4.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece4.tab[k][l] == true && JoueurBleu.piece4.lock == false){
+                             context.fillStyle = JoueurBleu.piece4.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece4.largeur,JoueurBleu.piece4.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 5:
+                   
+                for (k=0; k<=JoueurBleu.piece5.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece5.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece5.tab[k][l] == true && JoueurBleu.piece5.lock == false){
+                             context.fillStyle = JoueurBleu.piece5.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece5.largeur,JoueurBleu.piece5.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 6:
+                   
+                for (k=0; k<=JoueurBleu.piece6.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece6.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece6.tab[k][l] == true && JoueurBleu.piece6.lock == false){
+                             context.fillStyle = JoueurBleu.piece6.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece6.largeur,JoueurBleu.piece6.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 7:
+                   
+                for (k=0; k<=JoueurBleu.piece7.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece7.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece7.tab[k][l] == true && JoueurBleu.piece7.lock == false){
+                             context.fillStyle = JoueurBleu.piece7.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece7.largeur,JoueurBleu.piece7.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 8:
+                   
+                for (k=0; k<=JoueurBleu.piece8.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece8.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece8.tab[k][l] == true && JoueurBleu.piece8.lock == false){
+                             context.fillStyle = JoueurBleu.piece8.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece8.largeur,JoueurBleu.piece8.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 9:
+                   
+                for (k=0; k<=JoueurBleu.piece9.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece9.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece9.tab[k][l] == true && JoueurBleu.piece9.lock == false){
+                             context.fillStyle = JoueurBleu.piece9.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece9.largeur,JoueurBleu.piece9.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 10:
+                   
+                 for (k=0; k<=JoueurBleu.piece10.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece10.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece10.tab[k][l] == true && JoueurBleu.piece10.lock == false){
+                             context.fillStyle = JoueurBleu.piece10.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece10.largeur,JoueurBleu.piece10.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 11:
+                   
+                for (k=0; k<=JoueurBleu.piece11.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece11.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece11.tab[k][l] == true && JoueurBleu.piece11.lock == false){
+                             context.fillStyle = JoueurBleu.piece11.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece11.largeur,JoueurBleu.piece11.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 12:
+                   
+                 for (k=0; k<=JoueurBleu.piece12.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece12.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece12.tab[k][l] == true && JoueurBleu.piece12.lock == false){
+                             context.fillStyle = JoueurBleu.piece12.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece12.largeur,JoueurBleu.piece12.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 13:
+                   
+                for (k=0; k<=JoueurBleu.piece13.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece13.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece13.tab[k][l] == true && JoueurBleu.piece13.lock == false){
+                             context.fillStyle = JoueurBleu.piece13.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece13.largeur,JoueurBleu.piece13.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 14:
+                   
+                 for (k=0; k<=JoueurBleu.piece14.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece14.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece14.tab[k][l] == true && JoueurBleu.piece14.lock == false){
+                             context.fillStyle = JoueurBleu.piece14.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece14.largeur,JoueurBleu.piece14.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 15:
+                   
+                 for (k=0; k<=JoueurBleu.piece15.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece15.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece15.tab[k][l] == true && JoueurBleu.piece15.lock == false){
+                             context.fillStyle = JoueurBleu.piece15.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece15.largeur,JoueurBleu.piece15.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 16:
+                   
+                 for (k=0; k<=JoueurBleu.piece16.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece16.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece16.tab[k][l] == true && JoueurBleu.piece16.lock == false){
+                             context.fillStyle = JoueurBleu.piece16.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece16.largeur,JoueurBleu.piece16.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 17:
+                   
+                 for (k=0; k<=JoueurBleu.piece17.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece17.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece17.tab[k][l] == true && JoueurBleu.piece17.lock == false){
+                             context.fillStyle = JoueurBleu.piece17.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece17.largeur,JoueurBleu.piece17.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 18:
+                   
+                 for (k=0; k<=JoueurBleu.piece18.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece18.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece18.tab[k][l] == true && JoueurBleu.piece18.lock == false){
+                             context.fillStyle = JoueurBleu.piece18.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece18.largeur,JoueurBleu.piece18.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 19:
+                   
+                 for (k=0; k<=JoueurBleu.piece19.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece19.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece19.tab[k][l] == true && JoueurBleu.piece19.lock == false){
+                             context.fillStyle = JoueurBleu.piece19.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece19.largeur,JoueurBleu.piece19.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 20:
+                   
+                 for (k=0; k<=JoueurBleu.piece20.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece20.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece20.tab[k][l] == true && JoueurBleu.piece20.lock == false){
+                             context.fillStyle = JoueurBleu.piece20.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece20.largeur,JoueurBleu.piece20.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 21:
+                   
+                for (k=0; k<=JoueurBleu.piece21.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurBleu.piece21.tab[0].length-1; l++){
+
+                           if (JoueurBleu.piece21.tab[k][l] == true && JoueurBleu.piece21.lock == false){
+                             context.fillStyle = JoueurBleu.piece21.couleur; 
+                             context.fillRect(l*32,k*32,JoueurBleu.piece21.largeur,JoueurBleu.piece21.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                    
+            }
+            
+            
+            
+        }
+        creePieceV = function(n){
+            switch(n){
+                case 1:
+                   
+                 for (k=0; k<=JoueurVert.piece1.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece1.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece1.tab[k][l] == true && JoueurVert.piece1.lock == false){
+                             context.fillStyle = JoueurVert.piece1.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece1.largeur,JoueurVert.piece1.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 2:
+                   
+                 for (k=0; k<=JoueurVert.piece2.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece2.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece2.tab[k][l] == true && JoueurVert.piece2.lock == false){
+                             context.fillStyle = JoueurVert.piece2.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece2.largeur,JoueurVert.piece2.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 3:
+                   
+                 for (k=0; k<=JoueurVert.piece3.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece3.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece3.tab[k][l] == true && JoueurVert.piece3.lock == false){
+                             context.fillStyle = JoueurVert.piece3.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece3.largeur,JoueurVert.piece3.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 4:
+                   
+                for (k=0; k<=JoueurVert.piece4.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece4.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece4.tab[k][l] == true && JoueurVert.piece4.lock == false){
+                             context.fillStyle = JoueurVert.piece4.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece4.largeur,JoueurVert.piece4.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 5:
+                   
+                for (k=0; k<=JoueurVert.piece5.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece5.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece5.tab[k][l] == true && JoueurVert.piece5.lock == false){
+                             context.fillStyle = JoueurVert.piece5.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece5.largeur,JoueurVert.piece5.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 6:
+                   
+                for (k=0; k<=JoueurVert.piece6.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece6.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece6.tab[k][l] == true && JoueurVert.piece6.lock == false){
+                             context.fillStyle = JoueurVert.piece6.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece6.largeur,JoueurVert.piece6.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 7:
+                   
+                for (k=0; k<=JoueurVert.piece7.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece7.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece7.tab[k][l] == true && JoueurVert.piece7.lock == false){
+                             context.fillStyle = JoueurVert.piece7.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece7.largeur,JoueurVert.piece7.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 8:
+                   
+                for (k=0; k<=JoueurVert.piece8.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece8.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece8.tab[k][l] == true && JoueurVert.piece8.lock == false){
+                             context.fillStyle = JoueurVert.piece8.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece8.largeur,JoueurVert.piece8.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 9:
+                   
+                for (k=0; k<=JoueurVert.piece9.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece9.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece9.tab[k][l] == true && JoueurVert.piece9.lock == false){
+                             context.fillStyle = JoueurVert.piece9.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece9.largeur,JoueurVert.piece9.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 10:
+                   
+                 for (k=0; k<=JoueurVert.piece10.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece10.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece10.tab[k][l] == true && JoueurVert.piece10.lock == false){
+                             context.fillStyle = JoueurVert.piece10.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece10.largeur,JoueurVert.piece10.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 11:
+                   
+                for (k=0; k<=JoueurVert.piece11.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece11.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece11.tab[k][l] == true && JoueurVert.piece11.lock == false){
+                             context.fillStyle = JoueurVert.piece11.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece11.largeur,JoueurVert.piece11.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 12:
+                   
+                 for (k=0; k<=JoueurVert.piece12.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece12.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece12.tab[k][l] == true && JoueurVert.piece12.lock == false){
+                             context.fillStyle = JoueurVert.piece12.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece12.largeur,JoueurVert.piece12.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 13:
+                   
+                for (k=0; k<=JoueurVert.piece13.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece13.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece13.tab[k][l] == true && JoueurVert.piece13.lock == false){
+                             context.fillStyle = JoueurVert.piece13.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece13.largeur,JoueurVert.piece13.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 14:
+                   
+                 for (k=0; k<=JoueurVert.piece14.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece14.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece14.tab[k][l] == true && JoueurVert.piece14.lock == false){
+                             context.fillStyle = JoueurVert.piece14.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece14.largeur,JoueurVert.piece14.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 15:
+                   
+                 for (k=0; k<=JoueurVert.piece15.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece15.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece15.tab[k][l] == true && JoueurVert.piece15.lock == false){
+                             context.fillStyle = JoueurVert.piece15.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece15.largeur,JoueurVert.piece15.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 16:
+                   
+                 for (k=0; k<=JoueurVert.piece16.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece16.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece16.tab[k][l] == true && JoueurVert.piece16.lock == false){
+                             context.fillStyle = JoueurVert.piece16.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece16.largeur,JoueurVert.piece16.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 17:
+                   
+                 for (k=0; k<=JoueurVert.piece17.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece17.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece17.tab[k][l] == true && JoueurVert.piece17.lock == false){
+                             context.fillStyle = JoueurVert.piece17.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece17.largeur,JoueurVert.piece17.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 18:
+                   
+                 for (k=0; k<=JoueurVert.piece18.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece18.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece18.tab[k][l] == true && JoueurVert.piece18.lock == false){
+                             context.fillStyle = JoueurVert.piece18.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece18.largeur,JoueurVert.piece18.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 19:
+                   
+                 for (k=0; k<=JoueurVert.piece19.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece19.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece19.tab[k][l] == true && JoueurVert.piece19.lock == false){
+                             context.fillStyle = JoueurVert.piece19.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece19.largeur,JoueurVert.piece19.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 20:
+                   
+                 for (k=0; k<=JoueurVert.piece20.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece20.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece20.tab[k][l] == true && JoueurVert.piece20.lock == false){
+                             context.fillStyle = JoueurVert.piece20.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece20.largeur,JoueurVert.piece20.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 21:
+                   
+                for (k=0; k<=JoueurVert.piece21.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurVert.piece21.tab[0].length-1; l++){
+
+                           if (JoueurVert.piece21.tab[k][l] == true && JoueurVert.piece21.lock == false){
+                             context.fillStyle = JoueurVert.piece21.couleur; 
+                             context.fillRect(l*32,k*32,JoueurVert.piece21.largeur,JoueurVert.piece21.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                    
+            }
+            
+            
+            
+        }
+        creePieceJ = function(n){
+            switch(n){
+                case 1:
+                   
+                 for (k=0; k<=JoueurJaune.piece1.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece1.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece1.tab[k][l] == true && JoueurJaune.piece1.lock == false){
+                             context.fillStyle = JoueurJaune.piece1.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece1.largeur,JoueurJaune.piece1.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 2:
+                   
+                 for (k=0; k<=JoueurJaune.piece2.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece2.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece2.tab[k][l] == true && JoueurJaune.piece2.lock == false){
+                             context.fillStyle = JoueurJaune.piece2.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece2.largeur,JoueurJaune.piece2.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 3:
+                   
+                 for (k=0; k<=JoueurJaune.piece3.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece3.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece3.tab[k][l] == true && JoueurJaune.piece3.lock == false){
+                             context.fillStyle = JoueurJaune.piece3.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece3.largeur,JoueurJaune.piece3.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 4:
+                   
+                for (k=0; k<=JoueurJaune.piece4.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece4.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece4.tab[k][l] == true && JoueurJaune.piece4.lock == false){
+                             context.fillStyle = JoueurJaune.piece4.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece4.largeur,JoueurJaune.piece4.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 5:
+                   
+                for (k=0; k<=JoueurJaune.piece5.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece5.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece5.tab[k][l] == true && JoueurJaune.piece5.lock == false){
+                             context.fillStyle = JoueurJaune.piece5.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece5.largeur,JoueurJaune.piece5.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 6:
+                   
+                for (k=0; k<=JoueurJaune.piece6.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece6.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece6.tab[k][l] == true && JoueurJaune.piece6.lock == false){
+                             context.fillStyle = JoueurJaune.piece6.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece6.largeur,JoueurJaune.piece6.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 7:
+                   
+                for (k=0; k<=JoueurJaune.piece7.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece7.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece7.tab[k][l] == true && JoueurJaune.piece7.lock == false){
+                             context.fillStyle = JoueurJaune.piece7.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece7.largeur,JoueurJaune.piece7.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 8:
+                   
+                for (k=0; k<=JoueurJaune.piece8.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece8.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece8.tab[k][l] == true && JoueurJaune.piece8.lock == false){
+                             context.fillStyle = JoueurJaune.piece8.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece8.largeur,JoueurJaune.piece8.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 9:
+                   
+                for (k=0; k<=JoueurJaune.piece9.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece9.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece9.tab[k][l] == true && JoueurJaune.piece9.lock == false){
+                             context.fillStyle = JoueurJaune.piece9.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece9.largeur,JoueurJaune.piece9.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 10:
+                   
+                 for (k=0; k<=JoueurJaune.piece10.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece10.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece10.tab[k][l] == true && JoueurJaune.piece10.lock == false){
+                             context.fillStyle = JoueurJaune.piece10.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece10.largeur,JoueurJaune.piece10.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 11:
+                   
+                for (k=0; k<=JoueurJaune.piece11.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece11.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece11.tab[k][l] == true && JoueurJaune.piece11.lock == false){
+                             context.fillStyle = JoueurJaune.piece11.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece11.largeur,JoueurJaune.piece11.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 12:
+                   
+                 for (k=0; k<=JoueurJaune.piece12.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece12.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece12.tab[k][l] == true && JoueurJaune.piece12.lock == false){
+                             context.fillStyle = JoueurJaune.piece12.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece12.largeur,JoueurJaune.piece12.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 13:
+                   
+                for (k=0; k<=JoueurJaune.piece13.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece13.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece13.tab[k][l] == true && JoueurJaune.piece13.lock == false){
+                             context.fillStyle = JoueurJaune.piece13.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece13.largeur,JoueurJaune.piece13.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 14:
+                   
+                 for (k=0; k<=JoueurJaune.piece14.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece14.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece14.tab[k][l] == true && JoueurJaune.piece14.lock == false){
+                             context.fillStyle = JoueurJaune.piece14.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece14.largeur,JoueurJaune.piece14.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 15:
+                   
+                 for (k=0; k<=JoueurJaune.piece15.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece15.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece15.tab[k][l] == true && JoueurJaune.piece15.lock == false){
+                             context.fillStyle = JoueurJaune.piece15.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece15.largeur,JoueurJaune.piece15.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 16:
+                   
+                 for (k=0; k<=JoueurJaune.piece16.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece16.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece16.tab[k][l] == true && JoueurJaune.piece16.lock == false){
+                             context.fillStyle = JoueurJaune.piece16.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece16.largeur,JoueurJaune.piece16.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 17:
+                   
+                 for (k=0; k<=JoueurJaune.piece17.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece17.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece17.tab[k][l] == true && JoueurJaune.piece17.lock == false){
+                             context.fillStyle = JoueurJaune.piece17.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece17.largeur,JoueurJaune.piece17.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                case 18:
+                   
+                 for (k=0; k<=JoueurJaune.piece18.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece18.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece18.tab[k][l] == true && JoueurJaune.piece18.lock == false){
+                             context.fillStyle = JoueurJaune.piece18.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece18.largeur,JoueurJaune.piece18.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 19:
+                   
+                 for (k=0; k<=JoueurJaune.piece19.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece19.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece19.tab[k][l] == true && JoueurJaune.piece19.lock == false){
+                             context.fillStyle = JoueurJaune.piece19.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece19.largeur,JoueurJaune.piece19.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 20:
+                   
+                 for (k=0; k<=JoueurJaune.piece20.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece20.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece20.tab[k][l] == true && JoueurJaune.piece20.lock == false){
+                             context.fillStyle = JoueurJaune.piece20.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece20.largeur,JoueurJaune.piece20.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                 case 21:
+                   
+                for (k=0; k<=JoueurJaune.piece21.tab.length-1; k++) {
+                    for (l= 0; l<=JoueurJaune.piece21.tab[0].length-1; l++){
+
+                           if (JoueurJaune.piece21.tab[k][l] == true && JoueurJaune.piece21.lock == false){
+                             context.fillStyle = JoueurJaune.piece21.couleur; 
+                             context.fillRect(l*32,k*32,JoueurJaune.piece21.largeur,JoueurJaune.piece21.hauteur);
+                          }
+
+
+                    }
+                }
+                break;
+                    
+            }
+            
+            
+            
+        }
+        //////////////////////FIN FONCTION AFFICHAGE///////////////////
        /////////////////////// FONCTION PIECE /////////////////////////
         
         // fonction pour verifier si on clique sur une piece
         // Si oui, on peut bouger la piece
-          selectionnerPiece = function () {
+        selectionnerPiece = function () {
              var i = 1;
              var trouver = false;
               
@@ -765,17 +2662,13 @@
 
 
         }
-         
-
-
-        
-     
-
-                    
+                 
+          
+          
         // Fonction pour bouger les pieces
         // On verifie que poser est faux et que la piece n est pas lock
-        movePiece = function(e){
-            var piece = selectionnerPiece();
+       /* movePiece = function(e){
+            
             if (poser == false && !piece.lock){
                 if (event.target.id == "cvs") {
                     piece.x = e.pageX - e.target.offsetLeft;
@@ -783,30 +2676,18 @@
                 }
             }            
         }
-        
-        // Affichage des pieces        
-        // On verifie si la piece est lock ou pas
-        // Si lock est vrai alors la piece ne s'affiche pas a droite de la grille
-        affichagePieceD = function () {
-               
-                if (piece1.lock || piece2.lock || piece3.lock || piece4.lock || piece5.lock || piece6.lock || piece7.lock || piece8.lock || piece9.lock || piece10.lock || piece10.lock || piece11.lock || piece12.lock || piece13.lock || piece14.lock || piece15.lock ||piece16.lock ||piece17.lock || piece18.lock || piece19.lock || piece20.lock ||piece21.lock){
-                    
-                    
-               
-                    
-                }
-                
-                
-                
-        }
-        
+        */
+          
+          
         
         // Trouver piece
         // Utilisation de clic.x et clic.y
-        trouverPiece = function (i){
+        trouverPiece = function (i,couleur){
                 var ttt = false;
+            switch (couleur) {
+                case 'rouge':
                 switch (i){
-                case 1:
+                 case 1:
                  
                  break;
                  case 2:
@@ -879,11 +2760,25 @@
             
             
                 }
+                break;
+                case 'bleu':
+                    
+                    
+                break;
+                case 'vert':
+                    
+                    
+                    
+                break;
+                case 'jaune': 
+                    
+                    
+                break;
+            }
             
         }
         
-         /////////////////////// FONCTION PIECE /////////////////////////
-    
+         ///////////////////////FIN FONCTION PIECE /////////////////////////
         ////////////////////// FIN DES FONCTION /////////////////////// 
 
     </script>
@@ -893,12 +2788,10 @@
    <!-- /////////////// FIN HEAD ///////////////////// -->
     
    <!-- /////////////// BODY //////////////////// -->
-<body onload="init()">
-
-<canvas id="cvs" width="1400" height="640" style="margin: 10px auto; border: solid 1px #000000;" onmousemove="movePiece(event)"
-        ondblclick="doubleClick()" >
+<body onload="init()" style="background-color: black;">
+<div id="imageBlokus"></div>
+<canvas id="cvs" width="1400" height="640" style="margin: 10px auto; border: solid 1px #000000; background-color:floralwhite; "  ondblclick="doubleClick()" >
         <!-- un petit carre fait 32 par 32-->
-    
 </canvas>
 
     
