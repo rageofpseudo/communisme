@@ -1,0 +1,347 @@
+/*var m = 100;
+        var h = 100;
+        var piece1 = {
+            x: 550 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+        }
+        var piece2 = {
+            x: 625 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+        var piece3 = {
+            x: 732 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+        var piece4 = {
+            x: 810 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+        var piece5 = {
+            x: 950 + m,
+            y: 32 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+        var piece6 = {
+            x: 614 + m,
+            y: 75 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+        var piece7 = {
+            x: 725 + m,
+            y: 43 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, true, false, false],
+                [false, true, false, false, false],
+            ]
+
+        }
+        var piece8 = {
+            x: 885 + m,
+            y: 75 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+        var piece9 = {
+            x: 800 + m,
+            y: 80 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, true, false, false, false],
+                [false, true, true, false, false],
+            ]
+
+        }
+        var piece10 = {
+            x: 677 + m,
+            y: 150 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+        var piece11 = {
+            x: 950 + m,
+            y: 118 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+        var piece12 = {
+            x: 755 + m,
+            y: 160 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+        var piece13 = {
+            x: 615 + m,
+            y: 350 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+        var piece14 = {
+            x: 723 + m,
+            y: 237 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, false, false, false],
+            ]
+
+        }
+        var piece15 = {
+            x: 896 + m,
+            y: 192 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+            ]
+
+        }
+        var piece16 = {
+            x: 950 + m,
+            y: 200 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [false, true, false, false, false],
+                [true, true, true, false, false],
+            ]
+
+        }
+        var piece17 = {
+            x: 615 + m,
+            y: 192 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, true, false, false],
+            ]
+
+        }
+        var piece18 = {
+            x: 890 + m,
+            y: 207 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            id: "piece18",
+            lock: false,
+            tab: [
+                [true, true, false, false, false],
+                [false, true, true, false, false],
+                [false, false, true, false, false],
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+            ]
+
+
+        }
+        var piece19 = {
+            x: 950 + m,
+            y: 315 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, true, false, false],
+                [false, false, true, false, false],
+            ]
+
+        }
+        var piece20 = {
+            x: 720 + m,
+            y: 315 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [true, false, false, false, false],
+                [true, true, true, false, false],
+                [false, true, false, false, false],
+            ]
+
+        }
+        var piece21 = {
+            x: 840 + m,
+            y: 315 + h,
+            couleur: couleur,
+            hauteur: 32,
+            largeur: 32,
+            lock: false,
+            tab: [
+                [false, false, false, false, false],
+                [false, false, false, false, false],
+                [false, true, false, false, false],
+                [true, true, true, false, false],
+                [false, true, false, false, false],
+            ]
+
+        }*/
+
+        ,piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15, piece16, piece17, piece18, piece19, piece20, piece21
+
+
+
+                     extends Piece1, Piece2, Piece3, Piece4, Piece5, Piece6, Piece7 , Piece8, Piece9, Piece10, Piece11, Piece12, Piece13, Piece14, Piece15, Piece16, PIece17, Piece18, Piece19, Piece20, Piece21
+
+                     onmousemove="movePiece(event)"
